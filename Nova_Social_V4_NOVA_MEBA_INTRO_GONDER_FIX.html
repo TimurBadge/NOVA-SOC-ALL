@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Social — Sosyal Alanın</title>
+<style>
+:root{--bg:#f5f7fb;--panel:#fff;--text:#182230;--muted:#758195;--line:#e8edf4;--accent:#635bff;--accent2:#8b5cf6;--soft:#efefff;--shadow:0 12px 35px rgba(28,39,70,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text)}button,input,textarea{font:inherit}button{cursor:pointer;border:0;transition:transform .18s,box-shadow .18s,background .18s}button:active{transform:scale(.97)}.app{max-width:1440px;margin:auto;min-height:100vh}.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 34px;background:rgba(255,255,255,.9);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;backdrop-filter:blur(18px)}.brand{display:flex;align-items:center;gap:12px;font-weight:850;font-size:22px;letter-spacing:-.8px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#635bff,#a855f7);display:grid;place-items:center;color:white;font-size:22px;box-shadow:0 8px 18px #635bff42}.search{width:min(420px,38vw);position:relative}.search input{width:100%;border:1px solid var(--line);background:#f8f9fc;padding:13px 16px 13px 43px;border-radius:15px;outline:none}.search input:focus,.composer textarea:focus{border-color:#aaa5ff;box-shadow:0 0 0 4px #635bff12}.search span{position:absolute;left:15px;top:10px;color:var(--muted);font-size:19px}.top-actions{display:flex;align-items:center;gap:12px}.icon-btn{width:42px;height:42px;border-radius:14px;background:#f5f6fb;color:#566175;font-size:18px;position:relative}.icon-btn:hover{background:var(--soft);color:var(--accent);transform:translateY(-2px)}.avatar{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffd6a5,#fd9a9a);color:#773f46;font-weight:800;border:3px solid white;box-shadow:0 0 0 1px var(--line)}.layout{display:grid;grid-template-columns:230px minmax(0,650px) 290px;gap:26px;padding:28px 30px}.sidebar,.rightbar{position:sticky;top:100px;align-self:start}.side-title{font-size:11px;font-weight:800;color:#a0a9b8;letter-spacing:1.5px;margin:12px 12px}.nav{display:flex;flex-direction:column;gap:6px}.nav button{background:transparent;color:#697589;text-align:left;padding:13px 14px;border-radius:14px;font-weight:650;display:flex;align-items:center;gap:13px}.nav button span{width:22px;text-align:center;font-size:19px}.nav button:hover{background:#fff;transform:translateX(3px)}.nav button.active{background:var(--soft);color:var(--accent);box-shadow:inset 3px 0 var(--accent)}.sidebar-card{margin-top:28px;background:linear-gradient(145deg,#635bff,#8e66f5);border-radius:22px;padding:20px;color:#fff;box-shadow:0 16px 30px #635bff2b}.sidebar-card .spark{font-size:25px}.sidebar-card h3{margin:13px 0 7px;font-size:17px}.sidebar-card p{margin:0 0 16px;color:#e9e7ff;font-size:13px;line-height:1.5}.sidebar-card button{width:100%;background:#fff;color:#6259e9;padding:11px;border-radius:12px;font-weight:800}.main h1{font-size:28px;letter-spacing:-1px;margin:0}.sub{color:var(--muted);margin-top:6px;font-size:14px}.heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px}.today{font-size:12px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:9px 12px;border-radius:12px}.stories{display:flex;gap:15px;overflow:auto;padding:3px 2px 18px;margin-bottom:7px}.story{min-width:75px;text-align:center;cursor:pointer}.story-ring{width:64px;height:64px;margin:0 auto 8px;border-radius:22px;padding:3px;background:linear-gradient(135deg,#635bff,#e879f9,#fbbf24);transition:transform .2s}.story:hover .story-ring{transform:translateY(-4px) rotate(-3deg)}.story-face{height:100%;border:3px solid white;border-radius:19px;display:grid;place-items:center;font-size:23px;background:#e8eaff}.story small{font-size:11px;color:#697589;font-weight:650}.story.add .story-ring{background:#e6e9f2}.story.add .story-face{background:#fff;color:var(--accent);font-size:27px}.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}.composer{padding:20px;margin-bottom:20px}.compose-top{display:flex;gap:13px;align-items:flex-start}.composer textarea{width:100%;resize:vertical;min-height:54px;border:1px solid transparent;background:#f8f9fc;border-radius:15px;padding:15px;outline:none;color:var(--text)}.compose-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:13px}.compose-tools{display:flex;gap:8px;flex-wrap:wrap}.tool{background:transparent;color:#758195;padding:9px 10px;border-radius:10px;font-size:12px;font-weight:700}.tool:hover{background:#f2f2ff;color:var(--accent)}.primary{background:linear-gradient(135deg,#635bff,#8b5cf6);color:#fff;padding:11px 18px;border-radius:12px;font-weight:800;box-shadow:0 7px 15px #635bff2c}.primary:hover{transform:translateY(-2px);box-shadow:0 10px 20px #635bff40}.feed-head{display:flex;justify-content:space-between;align-items:center;margin:24px 2px 13px}.feed-head h2{font-size:17px;margin:0}.feed-head button{background:transparent;color:var(--muted);font-size:13px}.post{padding:21px;margin-bottom:18px;animation:rise .45s ease both}.post-head{display:flex;align-items:center;gap:12px}.person{flex:1}.person strong{font-size:14px}.person small{display:block;color:var(--muted);font-size:12px;margin-top:4px}.more{background:transparent;color:#a0a9b8;font-size:22px;border-radius:10px;width:35px;height:35px}.more:hover{background:#f5f6fb}.post-text{font-size:14px;line-height:1.75;color:#39465a;margin:17px 0}.tag{color:var(--accent);font-weight:700}.visual{height:230px;border-radius:17px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:16px;background:linear-gradient(135deg,#d9d7ff,#f5d8ff 52%,#ffe8d4)}.visual .orb{width:150px;height:150px;border-radius:42% 58% 65% 35%;background:linear-gradient(135deg,#fff,#a9a4ff 45%,#7065ff);box-shadow:20px 25px 50px #5c50d54d;transform:rotate(-25deg);animation:float 5s ease-in-out infinite}.visual .visual-label{position:absolute;left:23px;bottom:20px;font-size:12px;letter-spacing:2px;font-weight:900;color:#5c50b5}.visual.photo2{background:linear-gradient(135deg,#c7f4e8,#d8e8ff 50%,#fce0ed)}.visual.photo2 .orb{background:linear-gradient(135deg,#fff,#9be5d2 45%,#5b9fda);border-radius:50% 50% 38% 62%;transform:rotate(15deg)}.post-stats{display:flex;justify-content:space-between;color:#9aa4b3;font-size:12px;padding-bottom:14px;border-bottom:1px solid var(--line)}.post-actions{display:flex;gap:9px;padding-top:13px}.post-actions button{flex:1;background:transparent;color:#718096;padding:10px 5px;border-radius:11px;font-weight:700;font-size:13px}.post-actions button:hover{background:#f6f5ff;color:var(--accent)}.post-actions button.liked{color:#ed5c83;background:#fff0f4}.comments{display:none;margin-top:13px;padding-top:12px;border-top:1px solid var(--line)}.comments.open{display:block}.comment-row{display:flex;gap:8px;margin-bottom:10px;font-size:13px}.comment-row p{margin:0;background:#f6f7fb;padding:10px 12px;border-radius:12px;line-height:1.45}.comment-input{display:flex;gap:8px}.comment-input input{min-width:0;flex:1;border:1px solid var(--line);border-radius:11px;padding:10px 12px;outline:none}.comment-input button{background:var(--soft);color:var(--accent);border-radius:10px;padding:0 13px;font-weight:800}.right-card{padding:19px;margin-bottom:18px}.right-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.right-title h3{font-size:15px;margin:0}.right-title button{background:transparent;color:var(--accent);font-size:12px;font-weight:800}.trend{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #f0f2f7}.trend:last-child{border:0;padding-bottom:0}.trend-icon{width:39px;height:39px;border-radius:13px;display:grid;place-items:center;background:#f1efff;font-size:17px}.trend strong{display:block;font-size:12px}.trend small{display:block;color:var(--muted);font-size:11px;margin-top:5px}.friend{display:flex;align-items:center;gap:10px;margin:14px 0}.friend .avatar{width:36px;height:36px;flex-shrink:0}.friend-info{flex:1;min-width:0}.friend-info strong{display:block;font-size:12px}.friend-info small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.follow{background:var(--soft);color:var(--accent);font-size:11px;font-weight:800;padding:8px 10px;border-radius:10px}.follow.following{background:#effaf4;color:#21965d}.online{width:8px;height:8px;background:#38c987;border-radius:50%;display:inline-block;margin-right:5px}.footer{font-size:11px;color:#a3adbb;line-height:2;padding:12px 5px}.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:#1d2433;color:#fff;padding:13px 18px;border-radius:14px;box-shadow:0 12px 30px #0002;opacity:0;pointer-events:none;transition:.25s;z-index:20;font-size:13px}.toast.show{opacity:1;transform:translate(-50%,0)}.empty{display:none;text-align:center;color:var(--muted);padding:25px}.mobile-nav{display:none}
+/* Nova page transitions + Instagram-inspired SMSBO */
+@keyframes pageEnter{from{opacity:0;transform:translateY(14px) scale(.99);filter:blur(3px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes chatPop{0%{opacity:0;transform:translateY(9px) scale(.97)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.page-transition{animation:pageEnter .32s cubic-bezier(.2,.75,.25,1) both}
+.smsbo-shell{display:grid;grid-template-columns:190px minmax(0,1fr);min-height:410px;border:1px solid #edf0f6;border-radius:18px;overflow:hidden;background:#fff}
+.smsbo-people{background:#fbfbfe;border-right:1px solid #edf0f6;padding:12px;min-width:0}
+.smsbo-head{display:flex;align-items:center;justify-content:space-between;font-weight:850;font-size:16px;padding:5px 4px 13px}
+.smsbo-person{width:100%;display:flex;align-items:center;gap:10px;padding:11px 8px;border-radius:13px;background:transparent;text-align:left;color:#263044;margin:2px 0}
+.smsbo-person:hover,.smsbo-person.selected{background:#efefff}
+.smsbo-face{width:39px;height:39px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;color:white;font-weight:850;background:linear-gradient(135deg,#635bff,#d46acb);box-shadow:0 3px 9px #635bff22}
+.smsbo-person strong{display:block;font-size:12px}.smsbo-person small{display:block;font-size:10px;color:#8a94a6;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:110px}
+.smsbo-chat{display:flex;flex-direction:column;min-width:0;min-height:410px}
+.smsbo-chat-head{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid #edf0f6;font-weight:800;font-size:13px}
+.smsbo-chat-body{flex:1;padding:16px;overflow:auto;display:flex;flex-direction:column;gap:9px;max-height:280px;background:linear-gradient(#fff,#fcfbff)}
+.smsbo-empty{margin:auto;text-align:center;color:#8a94a6;font-size:12px;line-height:1.7;max-width:220px}
+.smsbo-bubble{max-width:84%;padding:10px 13px;border-radius:17px;font-size:13px;line-height:1.5;overflow-wrap:anywhere;animation:chatPop .2s ease both}
+.smsbo-bubble.them{align-self:flex-start;background:#f0f1f7;color:#293247;border-bottom-left-radius:5px}
+.smsbo-bubble.me{align-self:flex-end;background:linear-gradient(135deg,#635bff,#8b5cf6);color:#fff;border-bottom-right-radius:5px}
+.smsbo-time{display:block;font-size:9px;opacity:.7;text-align:right;margin-top:4px}
+.smsbo-typing{align-self:flex-start;background:#f0f1f7;color:#7d8497;border-radius:17px 17px 17px 5px;padding:11px 14px;display:flex;gap:4px;align-items:center;animation:chatPop .2s ease both}.smsbo-typing i{width:5px;height:5px;border-radius:50%;background:#8c85ff;animation:typingDot .9s infinite ease-in-out}.smsbo-typing i:nth-child(2){animation-delay:.15s}.smsbo-typing i:nth-child(3){animation-delay:.3s}@keyframes typingDot{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+.smsbo-compose{display:flex;gap:8px;align-items:flex-end;padding:12px;border-top:1px solid #edf0f6}
+.smsbo-compose textarea{min-width:0;flex:1;resize:none;border:1px solid #e6e8f1;border-radius:15px;padding:11px 13px;outline:none;max-height:90px;font-size:13px;background:#fafbff}
+.smsbo-compose textarea:focus{border-color:#a6a0ff;box-shadow:0 0 0 3px #635bff12}
+.smsbo-send{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#635bff,#8b5cf6);color:#fff;font-size:18px;box-shadow:0 6px 15px #635bff2c}
+.smsbo-note{font-size:10px;color:#9aa3b2;padding:0 13px 10px}
+@media(max-width:540px){.smsbo-shell{grid-template-columns:105px minmax(0,1fr)}.smsbo-people{padding:7px}.smsbo-person{display:block;text-align:center;padding:9px 3px}.smsbo-face{margin:0 auto 5px}.smsbo-person small{max-width:92px;margin:3px auto 0}.smsbo-head{font-size:13px}.smsbo-chat-body{padding:10px;max-height:300px}.smsbo-bubble{font-size:12px}.smsbo-compose{padding:8px}}
+@media(prefers-reduced-motion:reduce){.page-transition,.smsbo-bubble{animation:none!important}*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes float{0%,100%{transform:translateY(0) rotate(-25deg)}50%{transform:translateY(-12px) rotate(-10deg)}}
+@media(max-width:1150px){.layout{grid-template-columns:190px minmax(0,1fr);}.rightbar{display:none}.search{width:32vw}}
+@media(max-width:760px){.topbar{height:68px;padding:0 15px}.brand{font-size:18px}.logo{width:37px;height:37px}.search{display:none}.top-actions{gap:7px}.layout{display:block;padding:20px 13px 90px}.sidebar{display:none}.main h1{font-size:25px}.today{display:none}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:8;background:#ffffffed;backdrop-filter:blur(15px);border-top:1px solid var(--line);justify-content:space-around;padding:10px 8px calc(10px + env(safe-area-inset-bottom))}.mobile-nav button{background:transparent;color:#7b8799;font-size:20px;padding:6px 12px;border-radius:12px}.mobile-nav button.active{color:var(--accent);background:var(--soft)}.visual{height:190px}.composer{padding:15px}.post{padding:16px}.compose-tools .tool:nth-child(n+3){display:none}}
+
+.login-screen{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 15% 15%,#e7e4ff 0,transparent 32%),radial-gradient(circle at 85% 85%,#f4dcff 0,transparent 30%),#f7f8fc;display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,450px);align-items:center;gap:7vw;padding:clamp(24px,7vw,110px);overflow:auto;transition:opacity .35s,visibility .35s}.login-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}.login-brand{max-width:530px;animation:rise .7s ease both}.login-brand .brand{font-size:30px}.login-hero{font-size:clamp(42px,5.8vw,76px);line-height:1.02;letter-spacing:-3px;font-weight:900;margin:34px 0 20px}.login-hero span{background:linear-gradient(120deg,#635bff,#b04ce6);-webkit-background-clip:text;background-clip:text;color:transparent}.login-copy{font-size:17px;line-height:1.75;color:#707b91;max-width:440px}.login-orbs{display:flex;gap:13px;margin-top:34px}.login-orbs span{width:43px;height:43px;border-radius:15px;background:linear-gradient(135deg,#635bff,#a855f7);box-shadow:0 10px 20px #635bff30;animation:float 4s ease-in-out infinite}.login-orbs span:nth-child(2){background:linear-gradient(135deg,#ff9ac5,#ffc982);animation-delay:.5s}.login-orbs span:nth-child(3){background:linear-gradient(135deg,#78dbc0,#6ca8ff);animation-delay:1s}.login-card{background:#ffffffed;border:1px solid #ffffff;box-shadow:0 25px 80px #34365a18;border-radius:28px;padding:clamp(25px,4vw,39px);animation:rise .65s .1s ease both;backdrop-filter:blur(18px)}.login-card h2{font-size:27px;letter-spacing:-.8px;margin:0 0 8px}.login-muted{color:#7d8799;font-size:14px;margin:0 0 25px;line-height:1.6}.login-choice{width:100%;display:flex;align-items:center;gap:13px;text-align:left;padding:15px;border:1px solid #e7e9f2;border-radius:15px;background:#fff;color:#253044;margin-top:11px;transition:.2s}.login-choice:hover{border-color:#c5c0ff;background:#faf9ff;transform:translateY(-2px);box-shadow:0 8px 18px #635bff10}.login-choice .choice-icon{width:43px;height:43px;flex-shrink:0;border-radius:13px;display:grid;place-items:center;background:#efefff;color:#635bff;font-size:21px}.login-choice strong{display:block;font-size:14px}.login-choice small{display:block;color:#8791a2;font-size:11px;margin-top:4px}.login-field{display:block;font-size:12px;font-weight:800;color:#4b5669;margin:15px 0 8px}.login-input{width:100%;padding:14px 15px;border:1px solid #e5e8f0;background:#fbfcff;border-radius:13px;outline:none;transition:.2s;color:#182230}.login-input:focus{border-color:#9e98ff;box-shadow:0 0 0 4px #635bff12;background:#fff}.login-submit{width:100%;padding:15px;border-radius:14px;background:linear-gradient(120deg,#635bff,#8b5cf6);color:white;font-weight:850;box-shadow:0 10px 22px #635bff35;margin-top:20px}.login-submit:hover{transform:translateY(-2px);box-shadow:0 14px 28px #635bff45}.login-back{background:transparent;color:#635bff;font-weight:800;padding:0;margin-bottom:20px;font-size:13px}.login-error{display:none;margin:0 0 12px;color:#c33c62;background:#fff0f4;padding:10px 12px;border-radius:10px;font-size:12px}.login-error.show{display:block}.login-terms{text-align:center;color:#a0a8b7;font-size:11px;line-height:1.7;margin:18px 0 0}.login-view{display:none}.login-view.active{display:block}.login-screen.entered{display:none}@media(max-width:850px){.login-screen{grid-template-columns:1fr;gap:26px;padding:25px 16px;align-content:center}.login-brand{display:none}.login-card{width:min(100%,460px);margin:auto}.login-card h2{font-size:25px}}
+
+
+.login-security{display:flex;align-items:flex-start;gap:10px;background:#f1f8f5;border:1px solid #d9f0e4;color:#34765a;border-radius:13px;padding:12px;margin:18px 0 3px;font-size:11px;line-height:1.5}.login-security strong{display:block;font-size:12px;margin-bottom:2px}.login-input-wrap{position:relative}.login-input-wrap .login-input{padding-right:46px}.password-toggle{position:absolute;right:8px;top:7px;width:35px;height:35px;border-radius:10px;background:transparent;color:#818ba0}.password-toggle:hover{background:#efefff;color:#635bff}.login-screen .login-card{max-width:450px}.login-error{line-height:1.5}.login-back{display:none}
+
+/* Nova interaction and motion layer */
+:root{scroll-behavior:smooth}
+button,.story,.avatar,.card,.nav button,.login-choice,.logo{ -webkit-tap-highlight-color:transparent}
+button{transform-origin:center;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .22s,background .22s,color .22s,border-color .22s}
+button:hover{filter:saturate(1.08)}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #9d97ff;outline-offset:3px}
+.card{transition:transform .22s ease,box-shadow .22s,border-color .22s}
+.post:hover{box-shadow:0 18px 45px rgba(28,39,70,.11);border-color:#e0e2fb}
+.nav button{position:relative;overflow:hidden}
+.nav button:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent,#ffffff70,transparent);transform:translateX(-120%);transition:transform .55s}
+.nav button:hover:after{transform:translateX(120%)}
+.logo{animation:logoPulse 5s ease-in-out infinite}
+@keyframes logoPulse{0%,100%{box-shadow:0 8px 18px #635bff42}50%{box-shadow:0 10px 30px #a855f760}}
+@keyframes popIn{0%{opacity:0;transform:translateY(14px) scale(.98)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.app-panel-backdrop{position:fixed;inset:0;z-index:80;background:#11172b65;backdrop-filter:blur(7px);display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;pointer-events:none;transition:opacity .25s}
+.app-panel-backdrop.open{opacity:1;pointer-events:auto}
+.app-panel{width:min(560px,100%);max-height:min(78vh,760px);overflow:auto;background:#fff;border-radius:24px;padding:25px;box-shadow:0 30px 100px #12152c40;transform:translateY(18px) scale(.98);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+.app-panel-backdrop.open .app-panel{transform:translateY(0) scale(1)}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:20px}
+.panel-head h2{margin:0;font-size:22px;letter-spacing:-.5px}
+.panel-close{width:38px;height:38px;border-radius:12px;background:#f3f4fa;color:#58647a;font-size:20px}
+.panel-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #edf0f6}
+.panel-row:last-child{border-bottom:0}
+.panel-row .panel-icon{width:42px;height:42px;border-radius:14px;background:#efefff;color:#635bff;display:grid;place-items:center;font-size:19px;flex-shrink:0}
+.panel-row .panel-copy{flex:1;min-width:0}
+.panel-row strong{font-size:13px;display:block}
+.panel-row small{display:block;color:#7d8799;font-size:12px;margin-top:4px;line-height:1.5}
+.panel-input{width:100%;border:1px solid #e5e8f0;background:#fbfcff;padding:12px 14px;border-radius:12px;outline:none;margin:7px 0 14px}
+.panel-label{display:block;font-size:12px;font-weight:800;color:#4b5669;margin-top:12px}
+.panel-action{padding:11px 15px;background:#efefff;color:#635bff;border-radius:12px;font-weight:800}
+.panel-action.primary-action{background:linear-gradient(120deg,#635bff,#8b5cf6);color:white}
+.panel-empty{text-align:center;color:#7d8799;padding:25px 8px;line-height:1.6}
+.panel-profile-cover{height:100px;border-radius:17px;background:linear-gradient(120deg,#635bff,#c084fc,#fbcfe8);margin-bottom:-27px}
+.panel-profile-avatar{position:relative;margin-left:18px;width:66px;height:66px;border-radius:22px;background:#ffd6a5;border:4px solid white;display:grid;place-items:center;font-size:25px;font-weight:900;color:#773f46}
+.panel-profile-body{padding:12px 5px}
+.panel-profile-body h3{margin:8px 0 4px}
+.panel-profile-body p{margin:0;color:#7d8799;font-size:13px}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+
+.auth-loading{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at 20% 15%,#e7e4ff,transparent 35%),radial-gradient(circle at 85% 85%,#f2dfff,transparent 32%),#f7f8fc;opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s}
+.auth-loading.active{opacity:1;visibility:visible}.auth-loading-card{width:min(440px,100%);text-align:center;background:#ffffffed;border:1px solid #fff;border-radius:28px;padding:38px 28px;box-shadow:0 28px 90px #29285b1c;transform:translateY(18px) scale(.97);transition:transform .45s cubic-bezier(.2,.8,.2,1)}.auth-loading.active .auth-loading-card{transform:translateY(0) scale(1)}
+.auth-spinner{width:66px;height:66px;border-radius:50%;border:5px solid #e7e5ff;border-top-color:#635bff;border-right-color:#a855f7;margin:0 auto 25px;animation:authSpin .8s linear infinite}@keyframes authSpin{to{transform:rotate(360deg)}}
+.auth-mark{width:54px;height:54px;display:grid;place-items:center;margin:0 auto 22px;border-radius:18px;background:linear-gradient(135deg,#635bff,#a855f7);color:white;font-size:25px;box-shadow:0 12px 28px #635bff45;animation:authPulse 1.8s ease-in-out infinite}@keyframes authPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.auth-loading h2{font-size:23px;letter-spacing:-.6px;margin:0 0 10px;color:#20283a}.auth-loading p{font-size:14px;line-height:1.65;color:#7a8498;margin:0}.auth-progress{height:5px;background:#ecebfa;border-radius:99px;overflow:hidden;margin:25px 0 0}.auth-progress span{display:block;width:0;height:100%;border-radius:99px;background:linear-gradient(90deg,#635bff,#b04ce6);transition:width 1.5s ease}.auth-checks{display:flex;justify-content:center;gap:7px;margin-top:17px}.auth-checks span{width:7px;height:7px;border-radius:50%;background:#d9d7ee;transition:background .25s,transform .25s}.auth-checks span.done{background:#635bff;transform:scale(1.2)}
+.app.auth-reveal{animation:appReveal .75s cubic-bezier(.2,.8,.2,1) both}@keyframes appReveal{from{opacity:0;transform:translateY(18px) scale(.985);filter:blur(5px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+
+
+/* Space Robot Runner */
+.space-game-wrap{padding:4px 0 8px}.space-game-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:14px}.space-game-stats{display:flex;gap:8px}.space-stat{background:#f2f1ff;border:1px solid #e4e1ff;border-radius:12px;padding:8px 11px;min-width:75px}.space-stat small{display:block;color:#7b8197;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px}.space-stat strong{font-size:19px;color:#332c78}.space-canvas-shell{position:relative;overflow:hidden;border-radius:20px;background:#070b20;border:1px solid #292b5a;box-shadow:0 15px 36px #14143a25}.space-canvas{display:block;width:100%;height:auto;aspect-ratio:760/420;touch-action:manipulation}.space-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;background:linear-gradient(180deg,#070b2070,#070b20c9);color:white}.space-overlay[hidden]{display:none}.space-overlay-card{max-width:340px}.space-overlay h3{font-size:clamp(23px,4vw,34px);margin:0 0 9px;letter-spacing:-.7px}.space-overlay p{font-size:13px;line-height:1.65;color:#c8d2f4;margin:0 0 18px}.space-cta{background:linear-gradient(120deg,#7667ff,#b34cff);color:white;border-radius:13px;padding:12px 20px;font-weight:900;box-shadow:0 8px 24px #8065ff55}.space-game-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:13px}.space-control-hint{font-size:11px;line-height:1.5;color:#858da2}.space-jump{background:#efefff;color:#6257ef;border:1px solid #dedaff;border-radius:13px;padding:11px 18px;font-weight:900;touch-action:manipulation}.space-game-foot{font-size:11px;color:#9299aa;line-height:1.5;margin-top:12px}.space-new-record{color:#16a37a!important}
+
+
+/* Nova demo identity screen: two-column layout with a separate safety panel */
+.login-screen.identity-mode{grid-template-columns:minmax(0,900px);justify-content:center;padding:clamp(18px,4vw,56px)}
+.login-screen.identity-mode .login-brand{display:none}
+.login-screen.identity-mode .login-card{width:100%;max-width:900px;padding:clamp(22px,4vw,42px)}
+.login-screen.identity-mode #identityView.active{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.85fr);column-gap:34px;align-items:start}
+.login-screen.identity-mode #identityView>.login-back,.login-screen.identity-mode #identityView>h2,.login-screen.identity-mode #identityView>.login-muted{grid-column:1/-1}
+.login-screen.identity-mode #identityView>form{grid-column:1;grid-row:4 / span 2}
+.login-screen.identity-mode #identityView>.login-security{grid-column:2;grid-row:4;margin:0;padding:22px;min-height:210px;display:block;background:linear-gradient(145deg,#f0f5ff,#f2f8f5);border-color:#dbe5f2;color:#354a67;font-size:13px}
+.login-screen.identity-mode #identityView>.login-security>span{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:#dfe9ff;color:#235ca8;font-size:23px;margin-bottom:16px}
+.login-screen.identity-mode #identityView>.login-security strong{font-size:15px;color:#183b68;margin-bottom:8px}
+.login-screen.identity-mode #identityView .login-submit{background:linear-gradient(120deg,#245fa6,#397fbe);box-shadow:0 10px 22px #245fa625}
+.login-screen.identity-mode #identityView .login-input:focus{border-color:#6d9ed3;box-shadow:0 0 0 4px #245fa612}
+@media(max-width:650px){.login-screen.identity-mode #identityView.active{grid-template-columns:1fr}.login-screen.identity-mode #identityView>form,.login-screen.identity-mode #identityView>.login-security{grid-column:1;grid-row:auto}.login-screen.identity-mode #identityView>.login-security{margin-top:18px;min-height:0}}
+
+
+/* Nova Social: tema ve erişilebilir animasyon ayarları */
+body.nova-dark{--bg:#101321;--panel:#191d2d;--text:#edf0fb;--muted:#a0aac0;--line:#2a3044;--soft:#2a2850;--shadow:0 12px 35px rgba(0,0,0,.2);background:var(--bg);color:var(--text)}
+body.nova-dark .topbar,body.nova-dark .mobile-nav{background:rgba(25,29,45,.94);border-color:var(--line)}
+body.nova-dark .card,body.nova-dark .app-panel,body.nova-dark .login-card{background:var(--panel);border-color:var(--line);color:var(--text)}
+body.nova-dark .search input,body.nova-dark .composer textarea,body.nova-dark .comment-input input,body.nova-dark .panel-input,body.nova-dark .smsbo-compose textarea{background:#202538;border-color:#343b53;color:var(--text)}
+body.nova-dark .nav button,body.nova-dark .post-text,body.nova-dark .post-actions button,body.nova-dark .tool,body.nova-dark .panel-row .panel-copy small{color:#c0c8da}
+body.nova-dark .trend,body.nova-dark .panel-row,body.nova-dark .post-stats{border-color:var(--line)}
+body.nova-dark .right-card,body.nova-dark .today,body.nova-dark .icon-btn,body.nova-dark .panel-close{background:#202538;color:#e5e9f5;border-color:var(--line)}
+body.nova-dark .smsbo-shell,body.nova-dark .smsbo-people,body.nova-dark .smsbo-chat-body{background:#191d2d;border-color:var(--line)}
+body.nova-dark .smsbo-person{color:#edf0fb}body.nova-dark .smsbo-person:hover,body.nova-dark .smsbo-person.selected{background:#302d58}body.nova-dark .smsbo-bubble.them,body.nova-dark .comment-row p{background:#292f43;color:#edf0fb}
+body.reduced-motion-local *,body.reduced-motion-local *:before,body.reduced-motion-local *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+.profile-upload{display:inline-flex;align-items:center;gap:8px;cursor:pointer;background:#efefff;color:#635bff;border-radius:11px;padding:9px 12px;font-size:12px;font-weight:800;margin:8px 0 4px}
+</style>
+</head>
+<body>
+<div class="auth-loading" id="authLoading" aria-live="polite" aria-hidden="true"><div class="auth-loading-card"><div class="auth-mark">✦</div><div class="auth-spinner" id="authSpinner"></div><h2 id="authLoadingTitle">Oturumunuz açılıyor</h2><p id="authLoadingText">Lütfen bekleyiniz.</p><div class="auth-progress"><span id="authProgressBar"></span></div><div class="auth-checks"><span id="authStep1"></span><span id="authStep2"></span><span id="authStep3"></span></div></div></div>
+
+<style>
+.nova-meba-intro{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;background:radial-gradient(circle at 20% 20%,#29215d,transparent 38%),radial-gradient(circle at 80% 80%,#3d155d,transparent 38%),#080b20;color:white;opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s;padding:24px;text-align:center}
+.nova-meba-intro.show{opacity:1;visibility:visible}.nova-meba-logos{display:flex;align-items:center;justify-content:center;gap:clamp(12px,4vw,36px);font-weight:950;font-size:clamp(34px,8vw,76px);letter-spacing:-2px;animation:introFloat 1.2s ease-in-out infinite alternate}.nova-meba-nova{background:linear-gradient(120deg,#a79bff,#fff);color:transparent;background-clip:text;-webkit-background-clip:text}.nova-meba-x{color:#e5dfff;font-size:.65em;animation:introSpin 3s linear infinite}.nova-meba-meba{color:#ffb6e7;text-shadow:0 0 28px #d946ef70}.nova-meba-caption{color:#c9c9ee;font-size:13px;letter-spacing:3px;text-transform:uppercase}.nova-enter-btn{display:none;padding:15px 25px;border-radius:15px;background:linear-gradient(120deg,#7567ff,#d946ef);color:white;font-weight:900;box-shadow:0 10px 35px #865cff55;animation:popIn .45s both}.nova-enter-btn.ready{display:block}.nova-intro-count{font-size:12px;color:#aaa8d7}@keyframes introFloat{from{transform:translateY(4px)}to{transform:translateY(-8px)}}@keyframes introSpin{to{transform:rotate(360deg)}}
+</style>
+<div class="nova-meba-intro" id="novaMebaIntro" aria-hidden="true"><div class="nova-meba-logos"><span class="nova-meba-nova">NOVA</span><span class="nova-meba-x">×</span><span class="nova-meba-meba">MEBA</span></div><div class="nova-meba-caption">Yeni bir evren açılıyor</div><div class="nova-intro-count" id="novaIntroCount">3</div><button class="nova-enter-btn" id="novaEnterBtn" type="button">NOVAYA GEÇİŞ YAP&nbsp; →</button></div>
+
+<div class="app">
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-brand">
+    <div class="brand"><div class="logo">✦</div><span>nova<span style="color:var(--accent)">.</span></span></div>
+    <div class="login-hero">Kendi evrenini<br><span>keşfet.</span></div>
+    <div class="login-copy">Paylaş, keşfet ve topluluğuna katıl. Nova dünyası seni bekliyor.</div>
+    <div class="login-orbs"><span></span><span></span><span></span></div>
+  </div>
+  <section class="login-card">
+    <div class="login-view active" id="novaWelcomeView">
+      <div class="brand" style="margin-bottom:24px"><div class="logo">✦</div><span>nova<span style="color:var(--accent)">.</span></span></div>
+      <h2>Nova'ya hoş geldin</h2>
+      <p class="login-muted">Yeni şeyler keşfetmeye hazır mısın? Devam etmek için giriş yap.</p>
+      <button class="login-submit" type="button" id="startLoginBtn">Giriş Yap&nbsp; →</button>
+      <p class="login-terms">Nova Social · Demo sürümü</p>
+    </div>
+    <div class="login-view" id="novaGateView">
+      <button class="login-back" type="button" id="backWelcomeBtn" style="display:block">← Geri</button>
+      <h2>Nova'ya giriş</h2>
+      <p class="login-muted">Devam etmek için kimlik doğrulama adımını başlat.</p>
+      <div class="login-security"><span>✦</span><div><strong>Nova Kimlik Kapısı · Demo</strong>Bu, Nova için hazırlanmış örnek bir giriş ekranıdır; resmî e-Devlet sitesi değildir.</div></div>
+      <button class="login-choice" type="button" id="novaToIdentityBtn"><span class="choice-icon">↗</span><span><strong>e-Devlet ile giriş yap</strong><small>Demo kimlik doğrulama ekranını aç</small></span></button>
+    </div>
+    <div class="login-view" id="identityView">
+      <button class="login-back" type="button" id="backGateBtn" style="display:block">← Geri</button>
+      <h2>Kimlik doğrulama</h2>
+      <p class="login-muted">Bu yalnızca Nova demosu için yerel olarak kontrol edilen örnek hesaplardır.</p>
+      <form id="mebaLoginForm">
+        <label class="login-field" for="mebaIdentity">Kimlik / Ad Soyad</label>
+        <input class="login-input" id="mebaIdentity" autocomplete="username" placeholder="Alper Aslan veya Handan Aslan" required>
+        <label class="login-field" for="mebaPassword">Demo şifresi</label>
+        <div class="login-input-wrap"><input class="login-input" id="mebaPassword" type="password" autocomplete="off" placeholder="Demo şifresi" required><button type="button" class="password-toggle" id="togglePassword" aria-label="Şifreyi göster">◉</button></div>
+        <div class="login-error" id="loginError">Kimlik veya şifre doğru değil. Tekrar dene.</div>
+        <button class="login-submit" type="submit">Bilgileri kontrol et&nbsp; →</button>
+      </form>
+      <div class="login-security"><span>ⓘ</span><div><strong>Demo bilgileri</strong>Alper Aslan / 789456123 veya Handan Aslan / 123456789 kullanabilirsin. Bu bilgiler hiçbir yere gönderilmez.</div></div>
+    </div>
+    <div class="login-view" id="finishLoginView">
+      <h2>Kimlik doğrulandı ✓</h2>
+      <p class="login-muted" id="identitySuccessText">Nova'ya devam etmek için giriş işlemini tamamla.</p>
+      <div class="login-security"><span>✓</span><div><strong>Kontrol tamamlandı</strong>Demo hesabı doğrulandı. Nova oturumunu başlatabilirsin.</div></div>
+      <button class="login-submit" type="button" id="finishNovaBtn">Nova Girişi Tamamla&nbsp; →</button>
+    </div>
+  </section>
+</div>
+<header class="topbar">
+  <div class="brand"><div class="logo">✦</div><span>nova<span style="color:var(--accent)">.</span></span></div>
+  <div class="search"><span>⌕</span><input id="searchInput" placeholder="Kişileri, gönderileri keşfet..." aria-label="Ara"></div>
+  <div class="top-actions"><button class="icon-btn" id="notifBtn" aria-label="Bildirimler">♧</button><button class="icon-btn" id="messageBtn" aria-label="Mesajlar">✉</button><div class="avatar" title="Profilim">H</div></div>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-title">MENÜ</div>
+    <nav class="nav">
+      <button class="active" data-section="Akış"><span>⌂</span> Ana akış</button>
+      <button data-section="Keşfet"><span>◈</span> Keşfet</button>
+      <button data-section="SMSBO"><span>✉</span> SMSBO <span style="margin-left:auto;font-size:10px;background:#635bff;color:white;border-radius:8px;padding:3px 6px">2</span></button>
+      <button data-section="Bildirimler"><span>♧</span> Bildirimler</button>
+      <button data-section="Kaydedilenler"><span>▤</span> Kaydedilenler</button>
+<button data-section="Oyun"><span>🎮</span> Oyun</button>
+    </nav>
+    <div class="side-title" style="margin-top:29px">KİŞİSEL</div>
+    <nav class="nav">
+      <button data-section="Profilim"><span>◉</span> Profilim</button>
+      <button data-section="Ayarlar"><span>⚙</span> Ayarlar</button>
+    </nav>
+    <div class="sidebar-card"><div class="spark">✦</div><h3>Nova Plus</h3><p>Topluluğunu büyüt, yeni insanlarla tanış ve daha fazlasını keşfet.</p><button id="plusBtn">Yakında geliyor</button></div>
+  </aside>
+  <main class="main">
+    <div class="heading"><div><h1>Merhaba, Handan ✨</h1><div class="sub">Bugün dünyanda neler oluyor?</div></div><div class="today">✦ Senin alanın</div></div>
+    <div class="stories" aria-label="Hikâyeler">
+      <div class="story add" data-story="Hikâyeni paylaş"><div class="story-ring"><div class="story-face">＋</div></div><small>Hikâyen</small></div>
+      <div class="story" data-story="Ece"><div class="story-ring"><div class="story-face" style="background:#ffe6d8">👩🏻‍🎨</div></div><small>Ece</small></div>
+      <div class="story" data-story="Mert"><div class="story-ring"><div class="story-face" style="background:#d9f5e7">🧑🏻‍💻</div></div><small>Mert</small></div>
+      <div class="story" data-story="Zeynep"><div class="story-ring"><div class="story-face" style="background:#e3e2ff">👩🏽</div></div><small>Zeynep</small></div>
+      <div class="story" data-story="Arda"><div class="story-ring"><div class="story-face" style="background:#ffe3ed">🧑🏼‍🎤</div></div><small>Arda</small></div>
+      <div class="story" data-story="Selin"><div class="story-ring"><div class="story-face" style="background:#fff0c9">👩🏻</div></div><small>Selin</small></div>
+    </div>
+    <section class="card composer">
+      <div class="compose-top"><div class="avatar">H</div><textarea id="postText" placeholder="Aklından neler geçiyor? Bir şeyler paylaş..." rows="2"></textarea></div>
+      <div class="compose-bottom"><div class="compose-tools"><button class="tool" id="photoTool">▧ Fotoğraf</button><button class="tool" id="moodTool">☺ His / durum</button><button class="tool" id="pollTool">▥ Anket</button></div><button class="primary" id="shareBtn">Paylaş ↗</button></div>
+    </section>
+    <div class="feed-head"><h2>Senin akışın</h2><button id="sortBtn">✦ Sana özel⌄</button></div>
+    <div id="feed">
+      <article class="card post" data-search="ece demir tasarım ilham yaratıcılık">
+        <div class="post-head"><div class="avatar" style="background:linear-gradient(135deg,#ffd5bd,#fb9b8f)">E</div><div class="person"><strong>Ece Demir <span style="color:#635bff">✓</span></strong><small>@ecedemir · 18 dk önce</small></div><button class="more" aria-label="Daha fazla">···</button></div>
+        <p class="post-text">Bazen yeni bir fikrin başlaması için tek gereken şey, kendine biraz alan açmak. Bugün tasarım masamda renkler ve bolca kahve var. ☕ <span class="tag">#yaratıcılık</span> <span class="tag">#tasarım</span></p>
+        <div class="visual"><div class="orb"></div><div class="visual-label">MAKE SPACE FOR IDEAS</div></div>
+        <div class="post-stats"><span class="like-count">♡ 128 beğeni</span><span>24 yorum · 8 paylaşım</span></div>
+        <div class="post-actions"><button class="like-btn">♡ Beğen</button><button class="comment-btn">◯ Yorum yap</button><button class="save-btn">▤ Kaydet</button><button class="share-post">↗ Paylaş</button></div>
+        <div class="comments"><div class="comment-list"><div class="comment-row"><div class="avatar" style="width:30px;height:30px">M</div><p><strong>Mert</strong><br>Renkler harika olmuş! ✨</p></div></div><div class="comment-input"><input placeholder="Bir yorum yaz..." /><button>Gönder</button></div></div>
+      </article>
+      <article class="card post" data-search="mert kaya doğa yürüyüş hafta sonu">
+        <div class="post-head"><div class="avatar" style="background:linear-gradient(135deg,#b7efda,#6dbca3)">M</div><div class="person"><strong>Mert Kaya</strong><small>@mertkaya · 1 sa önce</small></div><button class="more" aria-label="Daha fazla">···</button></div>
+        <p class="post-text">Hafta sonuna küçük bir kaçamak iyi geldi. Bazen bildirimleri kapatıp doğanın sesini dinlemek gerekiyor. 🌿 Siz hafta sonu ne yaptınız?</p>
+        <div class="visual photo2"><div class="orb"></div><div class="visual-label" style="color:#367c76">SLOW DOWN · BREATHE</div></div>
+        <div class="post-stats"><span class="like-count">♡ 86 beğeni</span><span>12 yorum · 3 paylaşım</span></div>
+        <div class="post-actions"><button class="like-btn">♡ Beğen</button><button class="comment-btn">◯ Yorum yap</button><button class="save-btn">▤ Kaydet</button><button class="share-post">↗ Paylaş</button></div>
+        <div class="comments"><div class="comment-list"></div><div class="comment-input"><input placeholder="Bir yorum yaz..." /><button>Gönder</button></div></div>
+      </article>
+    </div>
+    <div class="empty card" id="empty">Bu aramayla eşleşen gönderi bulunamadı. Başka bir şey deneyebilirsin. ✨</div>
+  </main>
+  <aside class="rightbar">
+    <section class="card right-card"><div class="right-title"><h3>🔥 Gündemdekiler</h3><button id="trendMore">Tümü</button></div>
+      <div class="trend"><div class="trend-icon">🎨</div><div><strong>#TasarımRuhu</strong><small>2,4 bin gönderi</small></div></div>
+      <div class="trend"><div class="trend-icon" style="background:#e7f8ef">🌱</div><div><strong>#KüçükMutluluklar</strong><small>1,8 bin gönderi</small></div></div>
+      <div class="trend"><div class="trend-icon" style="background:#fff0e5">📸</div><div><strong>#BugündenBirKare</strong><small>956 gönderi</small></div></div>
+      <div class="trend"><div class="trend-icon" style="background:#e9f3ff">💡</div><div><strong>#YeniFikirler</strong><small>734 gönderi</small></div></div>
+    </section>
+    <section class="card right-card"><div class="right-title"><h3>Tanıyor olabilirsin</h3><button id="friendMore">Tümü</button></div>
+      <div class="friend"><div class="avatar" style="background:linear-gradient(135deg,#e7c9ff,#aa8bf1)">Z</div><div class="friend-info"><strong>Zeynep Aydın</strong><small>3 ortak arkadaş</small></div><button class="follow">Takip et</button></div>
+      <div class="friend"><div class="avatar" style="background:linear-gradient(135deg,#ffe6a8,#f2aa63)">A</div><div class="friend-info"><strong>Arda Yılmaz</strong><small>Fotoğrafçı</small></div><button class="follow">Takip et</button></div>
+      <div class="friend"><div class="avatar" style="background:linear-gradient(135deg,#bde9ff,#79b8e6)">S</div><div class="friend-info"><strong>Selin Aksoy</strong><small>Ortak ilgi alanı</small></div><button class="follow">Takip et</button></div>
+    </section>
+    <div class="footer">Hakkında · Gizlilik · Koşullar · Yardım<br>© 2026 Nova Social · Birlikte daha güzel.</div>
+  </aside>
+</div>
+<nav class="mobile-nav"><button class="active" data-section="Akış" aria-label="Ana akış">⌂</button><button data-section="Keşfet" aria-label="Keşfet">◈</button><button data-section="Paylaş" aria-label="Paylaş" id="mobileShare">＋</button><button data-section="SMSBO" aria-label="SMSBO">✉</button><button data-section="Profilim" aria-label="Profilim">◉</button></nav>
+
+<div class="app-panel-backdrop" id="appPanelBackdrop" aria-hidden="true">
+  <section class="app-panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle">
+    <div class="panel-head"><h2 id="panelTitle">Nova</h2><button class="panel-close" id="panelClose" aria-label="Kapat">×</button></div>
+    <div id="panelContent"></div>
+  </section>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+</div>
+<script>
+
+const loginScreen=document.getElementById('loginScreen');
+let verifiedIdentity='';
+function showLoginView(id){document.querySelectorAll('.login-view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active')}
+document.getElementById('startLoginBtn').addEventListener('click',()=>showLoginView('novaGateView'));
+document.getElementById('backWelcomeBtn').addEventListener('click',()=>showLoginView('novaWelcomeView'));
+document.getElementById('novaToIdentityBtn').addEventListener('click',()=>{loginScreen.classList.add('identity-mode');showLoginView('identityView');setTimeout(()=>document.getElementById('mebaIdentity').focus(),50)});
+document.getElementById('backGateBtn').addEventListener('click',()=>{loginScreen.classList.remove('identity-mode');showLoginView('novaGateView')});
+function enterNova(identity){const canonical=identity.trim().replace(/\s+/g,' ').toLocaleUpperCase('tr');const displayName=canonical==='ALPER ASLAN'?'Alper Aslan':'Handan Aslan';loginScreen.classList.add('entered');const heading=document.querySelector('.heading h1');if(heading)heading.textContent='Merhaba, '+displayName+' ✨';const profileName=document.querySelector('.top-actions .avatar');if(profileName)profileName.textContent=displayName==='Alper Aslan'?'A':'H';document.body.dataset.currentUser=displayName;toast('Giriş başarılı, hoş geldin '+displayName+'!')}
+document.getElementById('togglePassword').addEventListener('click',()=>{const p=document.getElementById('mebaPassword');p.type=p.type==='password'?'text':'password';document.getElementById('togglePassword').setAttribute('aria-label',p.type==='password'?'Şifreyi göster':'Şifreyi gizle')});
+// Formun doğal submit davranışı kullanılır; çift submit engellenir.
+document.getElementById('mebaIdentity').addEventListener('input',()=>document.getElementById('loginError').classList.remove('show'));document.getElementById('mebaPassword').addEventListener('input',()=>document.getElementById('loginError').classList.remove('show'));
+function validateNovaIdentity(e){
+ if(e) e.preventDefault();
+ const identity=document.getElementById('mebaIdentity').value.trim().replace(/\s+/g,' ').toLocaleUpperCase('tr');
+ const password=document.getElementById('mebaPassword').value;
+ const valid=(identity==='ALPER ASLAN'&&password==='789456123')||(identity==='HANDAN ASLAN'&&password==='123456789');
+ if(!valid){document.getElementById('loginError').classList.add('show');return}
+ document.getElementById('loginError').classList.remove('show');verifiedIdentity=identity;document.getElementById('mebaPassword').value='';
+ document.getElementById('identitySuccessText').textContent=(identity==='ALPER ASLAN'?'Alper Aslan':'Handan Aslan')+' hesabı doğrulandı. Nova oturumunu başlatabilirsin.';showLoginView('finishLoginView');
+}
+document.getElementById('mebaLoginForm').addEventListener('submit',validateNovaIdentity);
+document.querySelector('#mebaLoginForm .login-submit').type='button';
+document.querySelector('#mebaLoginForm .login-submit').addEventListener('click',validateNovaIdentity);
+
+document.getElementById('novaEnterBtn').addEventListener('click',()=>{const intro=document.getElementById('novaMebaIntro');intro.classList.remove('show');intro.setAttribute('aria-hidden','true');setTimeout(()=>{enterNova(verifiedIdentity);const app=document.querySelector('.app');app.classList.remove('auth-reveal');void app.offsetWidth;app.classList.add('auth-reveal')},350)});
+document.getElementById('finishNovaBtn').addEventListener('click',()=>{
+ const loading=document.getElementById('authLoading'), title=document.getElementById('authLoadingTitle'), text=document.getElementById('authLoadingText'), bar=document.getElementById('authProgressBar'), spinner=document.getElementById('authSpinner');
+ loading.classList.add('active');loading.setAttribute('aria-hidden','false');title.textContent='Nova oturumu hazırlanıyor';text.textContent='Lütfen bekleyiniz.';bar.style.width='12%';
+ ['authStep1','authStep2','authStep3'].forEach(id=>document.getElementById(id).classList.remove('done'));
+ setTimeout(()=>{bar.style.width='46%';document.getElementById('authStep1').classList.add('done');title.textContent='Demo hesabı kontrol ediliyor';text.textContent='Oturum güvenliği kontrol ediliyor.'},700);
+ setTimeout(()=>{bar.style.width='78%';document.getElementById('authStep2').classList.add('done');title.textContent='Nova hazırlanıyor';text.textContent='Ana sayfa yükleniyor.'},1500);
+ setTimeout(()=>{bar.style.width='100%';document.getElementById('authStep3').classList.add('done');spinner.style.display='none';title.textContent='Hazır!';text.textContent='Nova açılıyor…'},2200);
+ setTimeout(()=>{loading.classList.remove('active');loading.setAttribute('aria-hidden','true');spinner.style.display='';const intro=document.getElementById('novaMebaIntro'),count=document.getElementById('novaIntroCount'),enterBtn=document.getElementById('novaEnterBtn');intro.classList.add('show');intro.setAttribute('aria-hidden','false');let seconds=3;count.textContent=seconds;const countdown=setInterval(()=>{seconds--;if(seconds>0){count.textContent=seconds}else{clearInterval(countdown);count.textContent='Hazırsan başlayalım!';enterBtn.classList.add('ready')}},1000)},2750);
+});
+
+const toastEl=document.getElementById('toast');let toastTimer;
+function toast(msg){toastEl.textContent=msg;toastEl.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toastEl.classList.remove('show'),2400)}
+try{if(localStorage.getItem('novaDarkMode')==='1')document.body.classList.add('nova-dark');if(localStorage.getItem('novaReducedMotion')==='1')document.body.classList.add('reduced-motion-local')}catch(e){}
+document.getElementById('shareBtn').addEventListener('click',()=>{const box=document.getElementById('postText');const text=box.value.trim();if(!text){box.focus();toast('Paylaşmadan önce bir şeyler yaz ✨');return}const article=document.createElement('article');article.className='card post';article.dataset.ownPost='true';article.dataset.search=text.toLocaleLowerCase('tr');article.innerHTML=`<div class="post-head"><div class="avatar">H</div><div class="person"><strong>Handan</strong><small>@sen · şimdi</small></div><button class="more">···</button></div><p class="post-text"></p><div class="post-stats"><span class="like-count">♡ 0 beğeni</span><span>0 yorum · 0 paylaşım</span></div><div class="post-actions"><button class="like-btn">♡ Beğen</button><button class="comment-btn">◯ Yorum yap</button><button class="save-btn">▤ Kaydet</button><button class="share-post">↗ Paylaş</button></div><div class="comments"><div class="comment-list"></div><div class="comment-input"><input placeholder="Bir yorum yaz..." /><button>Gönder</button></div></div>`;article.querySelector('.post-text').textContent=text;document.getElementById('feed').prepend(article);box.value='';wirePost(article);toast('Gönderin akışa eklendi! ✨');article.scrollIntoView({behavior:'smooth',block:'center'})});
+function wirePost(post){const like=post.querySelector('.like-btn');if(like)like.addEventListener('click',()=>{like.classList.toggle('liked');const liked=like.classList.contains('liked');like.textContent=liked?'♥ Beğendin':'♡ Beğen';const count=post.querySelector('.like-count');let n=parseInt(count.dataset.n||count.textContent.match(/\d+/)?.[0]||'0');n=Math.max(0,n+(liked?1:-1));count.dataset.n=n;count.textContent=`${liked?'♥':'♡'} ${n} beğeni`});const comment=post.querySelector('.comment-btn');if(comment)comment.addEventListener('click',()=>{const panel=post.querySelector('.comments');panel.classList.toggle('open');if(panel.classList.contains('open'))panel.querySelector('input').focus()});const save=post.querySelector('.save-btn');if(save)save.addEventListener('click',()=>{save.classList.toggle('liked');save.textContent=save.classList.contains('liked')?'✓ Kaydedildi':'▤ Kaydet';toast(save.classList.contains('liked')?'Gönderi kaydedildi':'Kaydedilenlerden çıkarıldı')});const share=post.querySelector('.share-post');if(share)share.addEventListener('click',async()=>{try{if(navigator.share)await navigator.share({title:'Nova Social',text:post.querySelector('.post-text').textContent});else if(navigator.clipboard){await navigator.clipboard.writeText(post.querySelector('.post-text').textContent);toast('Gönderi metni kopyalandı')}else toast('Paylaşım hazır!')}catch(e){}});const send=post.querySelector('.comment-input button');if(send)send.addEventListener('click',()=>{const input=post.querySelector('.comment-input input');const val=input.value.trim();if(!val)return;const row=document.createElement('div');row.className='comment-row';const av=document.createElement('div');av.className='avatar';av.style.cssText='width:30px;height:30px';av.textContent='H';const p=document.createElement('p');const strong=document.createElement('strong');strong.textContent='Handan';p.append(strong,document.createElement('br'),document.createTextNode(val));row.append(av,p);post.querySelector('.comment-list').append(row);input.value='';toast('Yorum eklendi!')});post.querySelector('.more')?.addEventListener('click',()=>{if(post.dataset.ownPost==='true'){if(confirm('Bu gönderiyi silmek istiyor musun?')){post.remove();toast('Gönderi silindi.')}}else{toast('Bu gönderi sana ait değil; demo sürümünde yalnızca kendi gönderilerini silebilirsin.')}})}
+document.querySelectorAll('.post').forEach(wirePost);
+document.querySelectorAll('.follow').forEach(b=>b.addEventListener('click',()=>{const on=b.classList.toggle('following');b.textContent=on?'✓ Takiptesin':'Takip et';toast(on?'Takip etmeye başladın':'Takip bırakıldı')}));
+document.querySelectorAll('.story').forEach(s=>s.addEventListener('click',()=>toast(s.dataset.story==='Hikâyeni paylaş'?'Hikâye paylaşma özelliği yakında!':s.dataset.story+' adlı kişinin hikâyesi açılıyor')));
+document.querySelectorAll('[data-section]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-section]').forEach(x=>x.classList.remove('active'));document.querySelectorAll('[data-section="'+b.dataset.section+'"]').forEach(x=>x.classList.add('active'));const sec=b.dataset.section;const mainArea=document.querySelector('.main');if(mainArea){mainArea.classList.remove('page-transition');void mainArea.offsetWidth;mainArea.classList.add('page-transition')}if(sec==='Paylaş'){document.getElementById('postText').focus();document.querySelector('.composer').scrollIntoView({behavior:'smooth'});return}if(sec==='Akış'){document.querySelector('.heading').scrollIntoView({behavior:'smooth',block:'start'});document.querySelectorAll('#feed .post').forEach(p=>p.style.display='');document.getElementById('empty').style.display='none';return}if(sec==='Keşfet'){document.getElementById('searchInput').focus();document.querySelector('.search').scrollIntoView({behavior:'smooth',block:'center'});toast('Keşfet: gönderileri arayarak keşfedebilirsin');return}if(sec==='Kaydedilenler'){let saved=Array.from(document.querySelectorAll('#feed .post')).filter(p=>p.querySelector('.save-btn')?.classList.contains('liked'));document.querySelectorAll('#feed .post').forEach(p=>p.style.display=saved.includes(p)?'':'none');document.getElementById('empty').style.display=saved.length?'none':'block';document.getElementById('empty').textContent=saved.length?'':'Henüz kaydedilmiş gönderin yok. Gönderilerde “Kaydet” düğmesini kullanabilirsin.';document.querySelector('.feed-head h2').textContent='Kaydedilenler';document.querySelector('.feed-head').scrollIntoView({behavior:'smooth'});return}if(sec==='Profilim'){document.querySelector('.heading h1').textContent='Handan Aslan · Profilim';document.querySelector('.heading').scrollIntoView({behavior:'smooth'});toast('Profil görünümü seçildi');return}if(sec==='Mesajlar'){toast('Mesajlar alanı için sonraki adımda gerçek mesaj ekranı ekleyebiliriz');return}if(sec==='Bildirimler'){toast('Bildirimler: şu anda yeni bildirimin yok');return}if(sec==='Ayarlar'){toast('Ayarlar bölümü seçildi');return}}));
+document.getElementById('mobileShare').addEventListener('click',()=>{document.getElementById('postText').focus();document.querySelector('.composer').scrollIntoView({behavior:'smooth'})});
+document.getElementById('searchInput').addEventListener('input',e=>{const q=e.target.value.toLocaleLowerCase('tr').trim();let visible=0;document.querySelectorAll('#feed .post').forEach(p=>{const ok=(p.innerText+' '+(p.dataset.search||'')).toLocaleLowerCase('tr').includes(q);p.style.display=ok?'':'none';if(ok)visible++});document.getElementById('empty').style.display=visible?'none':'block'});
+document.getElementById('notifBtn').addEventListener('click',()=>document.querySelector('[data-section="Bildirimler"]')?.click());document.getElementById('messageBtn').addEventListener('click',()=>document.querySelector('[data-section="Mesajlar"]')?.click());document.getElementById('plusBtn').addEventListener('click',()=>toast('Nova Plus yakında geliyor!'));document.getElementById('photoTool').addEventListener('click',()=>toast('Fotoğraf ekleme sonraki sürümde'));document.getElementById('moodTool').addEventListener('click',()=>toast('Bugün nasıl hissediyorsun? Bu özellik yakında'));document.getElementById('pollTool').addEventListener('click',()=>toast('Anket oluşturma sonraki sürümde'));document.getElementById('sortBtn').addEventListener('click',()=>toast('Akışın sana özel olarak sıralanıyor'));document.getElementById('trendMore').addEventListener('click',()=>toast('Tüm gündem etiketleri yakında'));document.getElementById('friendMore').addEventListener('click',()=>toast('Daha fazla kişi önerisi yakında'));
+
+// Functional navigation and panels
+(function(){
+ const backdrop=document.getElementById('appPanelBackdrop');
+ const panelTitle=document.getElementById('panelTitle');
+ const panelContent=document.getElementById('panelContent');
+ const closeBtn=document.getElementById('panelClose');
+ function closePanel(){backdrop.classList.remove('open');backdrop.setAttribute('aria-hidden','true')}
+ function openPanel(title,htmlContent){panelTitle.textContent=title;panelContent.innerHTML=htmlContent;backdrop.classList.add('open');backdrop.setAttribute('aria-hidden','false');const first=panelContent.querySelector('input,button,textarea');if(first)setTimeout(()=>first.focus(),100)}
+ closeBtn.addEventListener('click',closePanel);
+ backdrop.addEventListener('click',e=>{if(e.target===backdrop)closePanel()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
+ const row=(icon,title,desc,action='')=>`<div class="panel-row"><div class="panel-icon">${icon}</div><div class="panel-copy"><strong>${title}</strong><small>${desc}</small></div>${action}</div>`;
+
+ function showSpaceGame(){
+  openPanel('Uzay Robotu',`<div class="space-game-wrap">
+   <div class="space-game-head"><div><strong style="font-size:16px">UZAY ROBOTU</strong><div style="font-size:11px;color:#8b91a6;margin-top:3px">Engellerden kaç · Rekorunu kır</div></div><div class="space-game-stats"><div class="space-stat"><small>Puan</small><strong id="spaceScore">0</strong></div><div class="space-stat"><small>Rekor</small><strong id="spaceBest">0</strong></div></div></div>
+   <div class="space-canvas-shell"><canvas class="space-canvas" id="spaceCanvas" width="760" height="420" aria-label="Uzay Robotu oyun alanı"></canvas>
+    <div class="space-overlay" id="spaceOverlay"><div class="space-overlay-card"><div style="font-size:44px;margin-bottom:8px">🤖</div><h3 id="spaceOverlayTitle">UZAY ROBOTU</h3><p id="spaceOverlayText">Robotunu hareket ettir, asteroitlerden ve enerji engellerinden kaç. Ne kadar uzun dayanırsan puanın o kadar yükselir!</p><button class="space-cta" id="spaceStart">OYUNA BAŞLA</button></div></div>
+   </div>
+   <div class="space-game-controls"><div class="space-control-hint">Bilgisayar: ← → veya A / D<br>Telefon: oyun alanına dokunarak hareket et</div><button class="space-jump" id="spaceDodge">↔ KAÇIŞ</button></div>
+   <div class="space-game-foot">Çarpışınca oyun biter. Rekorun bu tarayıcıda saklanır.</div>
+  </div>`);
+  const canvas=panelContent.querySelector('#spaceCanvas'),ctx=canvas.getContext('2d'),overlay=panelContent.querySelector('#spaceOverlay');
+  const scoreEl=panelContent.querySelector('#spaceScore'),bestEl=panelContent.querySelector('#spaceBest'),startBtn=panelContent.querySelector('#spaceStart'),dodgeBtn=panelContent.querySelector('#spaceDodge');
+  let best=0;try{best=Number(localStorage.getItem('novaSpaceRobotBest')||0)}catch(e){}bestEl.textContent=best;
+  let running=false,raf=0,last=0,elapsed=0,score=0,spawn=0,obstacles=[],stars=[],particles=[],targetX=canvas.width/2,player={x:canvas.width/2,y:canvas.height-78,w:42,h:48},flash=0;
+  for(let i=0;i<85;i++)stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.8+.3,s:15+Math.random()*55,a:.2+Math.random()*.7});
+  function rounded(x,y,w,h,r,color){ctx.fillStyle=color;ctx.beginPath();ctx.roundRect?ctx.roundRect(x,y,w,h,r):ctx.rect(x,y,w,h);ctx.fill()}
+  function drawRobot(){const x=player.x,y=player.y;ctx.save();ctx.translate(x,y);
+   ctx.shadowColor='#62eaff';ctx.shadowBlur=20;
+   rounded(-19,-23,38,36,11,'#b8d8ef');ctx.shadowBlur=0;
+   rounded(-14,-18,28,20,7,'#273d69');rounded(-9,-13,5,7,2,'#63f5ff');rounded(4,-13,5,7,2,'#63f5ff');
+   ctx.fillStyle='#d6e7f7';ctx.fillRect(-12,14,24,6);rounded(-15,20,11,8,3,'#9c8cff');rounded(4,20,11,8,3,'#9c8cff');
+   rounded(-25,-13,7,19,3,'#91b9d8');rounded(18,-13,7,19,3,'#91b9d8');
+   ctx.strokeStyle='#76efff';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,-23);ctx.lineTo(0,-29);ctx.stroke();ctx.fillStyle='#ffdc78';ctx.beginPath();ctx.arc(0,-31,3,0,Math.PI*2);ctx.fill();
+   ctx.globalAlpha=.8;ctx.fillStyle='#65e8ff';ctx.beginPath();ctx.moveTo(-8,30);ctx.lineTo(-3,41+Math.random()*8);ctx.lineTo(0,30);ctx.fill();ctx.beginPath();ctx.moveTo(4,30);ctx.lineTo(9,39+Math.random()*8);ctx.lineTo(12,30);ctx.fill();ctx.restore();}
+  function drawObstacle(o){ctx.save();ctx.translate(o.x,o.y);if(o.type===0){ctx.rotate(o.rot);ctx.shadowColor='#ff6d8d';ctx.shadowBlur=18;ctx.fillStyle='#ff708b';ctx.beginPath();for(let i=0;i<10;i++){let a=i*Math.PI/5,r=i%2?o.r*.72:o.r;ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r)}ctx.closePath();ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#7c315e';ctx.beginPath();ctx.arc(0,0,o.r*.38,0,Math.PI*2);ctx.fill()}else{ctx.shadowColor='#9c81ff';ctx.shadowBlur=18;rounded(-o.w/2,-o.h/2,o.w,o.h,9,'#8e7bff');ctx.shadowBlur=0;rounded(-o.w/2+5,-o.h/2+5,o.w-10,o.h-10,6,'#302d72');ctx.fillStyle='#b6a7ff';ctx.fillRect(-o.w/2+8,-2,o.w-16,4)}ctx.restore();}
+  function draw(){const w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);const g=ctx.createLinearGradient(0,0,0,h);g.addColorStop(0,'#090e2b');g.addColorStop(1,'#15143d');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+   ctx.strokeStyle='#4e5ab0';ctx.globalAlpha=.12;for(let x=0;x<w;x+=44){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke()}for(let y=0;y<h;y+=44){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}ctx.globalAlpha=1;
+   stars.forEach(s=>{ctx.globalAlpha=s.a;ctx.fillStyle='#d7f5ff';ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill()});ctx.globalAlpha=1;
+   ctx.strokeStyle='#6b6dff';ctx.globalAlpha=.55;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,h-26);ctx.lineTo(w,h-26);ctx.stroke();ctx.globalAlpha=1;
+   obstacles.forEach(drawObstacle);particles.forEach(p=>{ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()});ctx.globalAlpha=1;drawRobot();
+   if(flash>0){ctx.fillStyle='rgba(255,80,125,'+(flash*.25)+')';ctx.fillRect(0,0,w,h)}
+  }
+  function reset(){cancelAnimationFrame(raf);running=true;last=0;elapsed=0;score=0;spawn=.5;obstacles=[];particles=[];flash=0;player.x=canvas.width/2;targetX=player.x;scoreEl.textContent='0';overlay.hidden=true;raf=requestAnimationFrame(loop)}
+  function endGame(){running=false;cancelAnimationFrame(raf);const final=Math.floor(score);let record=false;if(final>best){best=final;record=true;bestEl.textContent=best;try{localStorage.setItem('novaSpaceRobotBest',String(best))}catch(e){}}overlay.hidden=false;panelContent.querySelector('#spaceOverlayTitle').textContent=record?'YENİ REKOR!':'OYUN BİTTİ';panelContent.querySelector('#spaceOverlayTitle').className=record?'space-new-record':'';panelContent.querySelector('#spaceOverlayText').textContent='Puanın: '+final+' · Rekorun: '+best+'. Hazırsan yeniden dene!';startBtn.textContent='TEKRAR OYNA';}
+  function loop(ts){if(!running)return;const dt=Math.min(.033,Math.max(0,(ts-last)/1000||0));last=ts;elapsed+=dt;score+=dt*10;scoreEl.textContent=Math.floor(score);const speed=150+Math.min(220,elapsed*5);spawn-=dt;if(spawn<=0){const type=Math.random()<.58?0:1;obstacles.push({x:40+Math.random()*(canvas.width-80),y:-45,r:17+Math.random()*10,w:34+Math.random()*12,h:30+Math.random()*18,type,rot:Math.random()*6.2,spin:(Math.random()-.5)*2,passed:false});spawn=Math.max(.36,1.0-elapsed*.008)+Math.random()*.35}
+   player.x+=(targetX-player.x)*Math.min(1,dt*10);player.x=Math.max(27,Math.min(canvas.width-27,player.x));
+   stars.forEach(s=>{s.y+=s.s*dt;if(s.y>canvas.height){s.y=-3;s.x=Math.random()*canvas.width}});
+   obstacles.forEach(o=>{o.y+=speed*dt;o.rot+=o.spin*dt;if(!o.passed&&o.y>player.y){o.passed=true;score+=5;scoreEl.textContent=Math.floor(score)}});
+   obstacles=obstacles.filter(o=>o.y<canvas.height+60);
+   particles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt*1.7});particles=particles.filter(p=>p.life>0);
+   for(const o of obstacles){const dx=Math.abs(o.x-player.x),dy=Math.abs(o.y-player.y);const hit=o.type===0?Math.hypot(dx,dy)<o.r+22:(dx<o.w/2+18&&dy<o.h/2+20);if(hit){for(let i=0;i<26;i++)particles.push({x:player.x,y:player.y,vx:(Math.random()-.5)*260,vy:(Math.random()-.5)*260,life:1,r:2+Math.random()*3,color:['#70f2ff','#ff6f9b','#c6a6ff'][i%3]});flash=1;draw();endGame();return}}
+   flash=Math.max(0,flash-dt*3);draw();raf=requestAnimationFrame(loop)}
+  function moveTo(clientX){const rect=canvas.getBoundingClientRect();targetX=(clientX-rect.left)/rect.width*canvas.width}
+  canvas.addEventListener('pointermove',e=>{if(running&&e.pointerType!=='mouse')moveTo(e.clientX)});canvas.addEventListener('pointerdown',e=>{if(running){moveTo(e.clientX);canvas.setPointerCapture?.(e.pointerId)}});
+  dodgeBtn.addEventListener('click',()=>{if(running){targetX=player.x<canvas.width/2?canvas.width*.78:canvas.width*.22;dodgeBtn.animate([{transform:'scale(1)'},{transform:'scale(.93)'},{transform:'scale(1)'}],{duration:180})}});
+  startBtn.addEventListener('click',reset);
+  const keyHandler=e=>{if(!backdrop.classList.contains('open')||panelTitle.textContent!=='Uzay Robotu')return;if(['ArrowLeft','ArrowRight','KeyA','KeyD','Space'].includes(e.code)){e.preventDefault();if(!running&&e.code==='Space')reset();else if(running){if(e.code==='ArrowLeft'||e.code==='KeyA')targetX-=75;if(e.code==='ArrowRight'||e.code==='KeyD')targetX+=75;if(e.code==='Space')targetX=player.x<canvas.width/2?canvas.width*.8:canvas.width*.2;targetX=Math.max(27,Math.min(canvas.width-27,targetX))}}};
+  document.addEventListener('keydown',keyHandler);
+  const originalClose=closePanel; // Keep game animation from running behind closed panel.
+  const closeGame=()=>{running=false;cancelAnimationFrame(raf);document.removeEventListener('keydown',keyHandler);closePanel()};
+  closeBtn.addEventListener('click',()=>{running=false;cancelAnimationFrame(raf);document.removeEventListener('keydown',keyHandler)});
+  backdrop.addEventListener('click',e=>{if(e.target===backdrop){running=false;cancelAnimationFrame(raf);document.removeEventListener('keydown',keyHandler)}});
+  draw();
+ }
+
+ function showSMSBO(){
+  const people=[{name:'Ece Demir',initial:'E',color:'linear-gradient(135deg,#ff9a9e,#fad0c4)'},{name:'Mert Kaya',initial:'M',color:'linear-gradient(135deg,#4facfe,#00f2fe)'},{name:'Zeynep Aydın',initial:'Z',color:'linear-gradient(135deg,#43e97b,#38f9d7)'},{name:'Nova Ekibi',initial:'✦',color:'linear-gradient(135deg,#635bff,#a855f7)'}];
+  let active='Ece Demir';let messages={};
+  try{messages=JSON.parse(localStorage.getItem('novaSMSBOChats')||'{}')}catch(e){messages={}}
+  people.forEach(p=>{if(!messages[p.name])messages[p.name]=p.name==='Ece Demir'?[{from:'them',text:'Selam! Nova nasıl gidiyor? ✨',time:'12:42'},{from:'me',text:'Çok iyi! SMSBO da yenilendi 💜',time:'12:43'},{from:'them',text:'Yeni tasarımı çok sevdim!',time:'12:44'}]:p.name==='Mert Kaya'?[{from:'them',text:'Hafta sonu planı ne oldu?',time:'Dün'}]:[]});
+  openPanel('SMSBO',`<div class="smsbo-shell page-transition"><aside class="smsbo-people"><div class="smsbo-head"><span>Mesajlar</span><span style="color:#635bff">✎</span></div><div id="smsboPeople"></div></aside><section class="smsbo-chat"><div class="smsbo-chat-head"><div id="smsboActiveFace" class="smsbo-face">E</div><span id="smsboActiveName">Ece Demir</span><span style="margin-left:auto;color:#35b879;font-size:11px">● Aktif</span></div><div class="smsbo-chat-body" id="smsboChatBody"></div><form class="smsbo-compose" id="smsboCompose"><textarea id="smsboMessage" rows="1" maxlength="1000" placeholder="Mesaj yaz..." aria-label="Mesaj yaz"></textarea><button class="smsbo-send" type="submit" aria-label="Mesaj gönder">➤</button></form><div class="smsbo-note">Akıcı sohbet demosu: yanıtlar otomatik oluşturulur. Gerçek kişilere çevrimiçi mesaj gönderilmez.</div></section></div>`);
+  const peopleEl=panelContent.querySelector('#smsboPeople'),body=panelContent.querySelector('#smsboChatBody');
+  function renderPeople(){peopleEl.innerHTML='';people.forEach(p=>{const b=document.createElement('button');b.className='smsbo-person'+(p.name===active?' selected':'');b.type='button';b.innerHTML='<span class="smsbo-face" style="background:'+p.color+'">'+p.initial+'</span><strong>'+p.name+'</strong><small></small>';const last=(messages[p.name]||[]).slice(-1)[0];b.querySelector('small').textContent=last?last.text:'Yeni sohbet başlat';b.addEventListener('click',()=>{active=p.name;renderPeople();renderChat()});peopleEl.appendChild(b)})}
+  function renderChat(){const p=people.find(x=>x.name===active);panelContent.querySelector('#smsboActiveName').textContent=active;const face=panelContent.querySelector('#smsboActiveFace');face.textContent=p.initial;face.style.background=p.color;body.innerHTML='';const list=messages[active]||[];if(!list.length){const empty=document.createElement('div');empty.className='smsbo-empty';empty.textContent='';empty.innerHTML='<div style="font-size:28px;margin-bottom:8px">✦</div><strong>Bu sohbetin başlangıcı</strong><br>İlk mesajını gönder!';body.appendChild(empty)}else list.forEach(m=>{const bubble=document.createElement('div');bubble.className='smsbo-bubble '+(m.from==='me'?'me':'them');bubble.textContent=m.text;const time=document.createElement('span');time.className='smsbo-time';time.textContent=m.time||'';bubble.appendChild(time);body.appendChild(bubble)});body.scrollTop=body.scrollHeight}
+  renderPeople();renderChat();
+  function clock(){return new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})}
+  function saveChats(){try{localStorage.setItem('novaSMSBOChats',JSON.stringify(messages))}catch(e){}}
+  function makeReply(text,name){
+   const t=text.toLocaleLowerCase('tr-TR').replace(/[!?.,;:]+/g,' ').trim();
+   let choices;
+   if(/\b(merhaba|selam|slm|hey|sa|selamlar)\b/.test(t)) choices=['Merhaba! 😊 Nasılsın, neler yapıyorsun?','Selammm! 👋 Tam da sohbet etmek istiyordum. Nasıl gidiyor?','Heyy! ✨ Hoş geldin. Günün nasıl geçiyor?'];
+   else if(/nasılsın|naber|ne haber|napıyorsun|ne yapıyorsun/.test(t)) choices=['İyiyim, teşekkür ederim! 😊 Sen nasılsın?','Fena değil, biraz takılıyorum burada 😄 Sen ne yapıyorsun?','İyiyim yaa ✨ Senin günün nasıl geçiyor?'];
+   else if(/\b(teşekkür|sağ ol|eyvallah|tşk)\b/.test(t)) choices=['Ne demek! 💜','Her zaman! 😊','Rica ederimmm ✨'];
+   else if(/\b(görüşürüz|bay bay|bye|hoşça kal)\b/.test(t)) choices=['Görüşürüz! Kendine iyi bak 💜','Bay bayyy 👋 Yine yaz!'];
+   else if(/\b(nova|uygulama|tasarım)\b/.test(t)) choices=['NOVA gerçekten güzel bir yere gidiyor! ✨ En çok hangi özelliğini sevdin?','Ben de NOVA hakkında konuşmayı seviyorum 😄 Sence sırada ne olmalı?','Aynen! 💜 Birlikte daha da güzelleşebilir.'];
+   else if(t.includes('?')) choices=['Güzel soru 😄 Biraz daha anlatsana?','Hmm, bunu merak ettim! Sence nasıl olmalı? ✨','Bence olabilir 😊 Sen ne düşünüyorsun?'];
+   else choices=['Hımm, anladım 😊 Biraz daha anlatır mısın?','Ooo, devam et, dinliyorum! 👀','Gerçekten mi? 😄 Sonra ne oldu?','Aynen yaa ✨ Sen bu konuda ne düşünüyorsun?','Anladım 💜 Peki bugün başka neler yaptın?'];
+   let reply=choices[Math.floor(Math.random()*choices.length)];
+   if(name==='Nova Ekibi' && !/nova/i.test(t)) reply='Nova Ekibi burada! ✨ '+reply;
+   return reply;
+  }
+  let sendingMessage=false;
+  function sendSMSBOMessage(e){if(e)e.preventDefault();if(sendingMessage)return;const input=panelContent.querySelector('#smsboMessage'),text=input.value.trim();if(!text){input.focus();return}sendingMessage=true;const target=active;if(!messages[target])messages[target]=[];messages[target].push({from:'me',text,time:clock()});saveChats();input.value='';renderPeople();renderChat();input.focus();
+   const typing=document.createElement('div');typing.className='smsbo-typing';typing.id='smsboTyping';typing.setAttribute('aria-label','Yanıt yazıyor');typing.innerHTML='<i></i><i></i><i></i>';if(active===target){body.appendChild(typing);body.scrollTop=body.scrollHeight}
+   const delay=Math.min(1900,650+text.length*13);
+   setTimeout(()=>{messages[target].push({from:'them',text:makeReply(text,target),time:clock()});saveChats();renderPeople();if(active===target)renderChat();sendingMessage=false},delay);
+  }
+  panelContent.querySelector('#smsboCompose').addEventListener('submit',sendSMSBOMessage);
+  panelContent.querySelector('.smsbo-send').addEventListener('click',sendSMSBOMessage);
+ }
+ function showMessages(){openPanel('Mesajlar',`<p class="sub" style="margin:0 0 12px">Sohbetlerini burada yönetebilirsin.</p><div id="chatList">${row('E','Ece Demir','Selam! Yeni tasarımını gördüm ✨ · 12:42','<button class="panel-action" data-chat="Ece Demir">Yanıtla</button>')}${row('M','Mert Kaya','Hafta sonu planı ne oldu? · Dün','<button class="panel-action" data-chat="Mert Kaya">Yanıtla</button>')}</div><label class="panel-label" for="newChatName">Yeni sohbet başlat</label><input class="panel-input" id="newChatName" placeholder="Kişinin adı"><label class="panel-label" for="chatMessage">Mesajın</label><textarea class="panel-input" id="chatMessage" rows="3" placeholder="Bir mesaj yaz..."></textarea><button class="panel-action primary-action" id="sendChat">Mesaj gönder</button><p class="sub">Bu tarayıcı sürümünde mesajlar yalnızca arayüzde gösterilir; başka kullanıcılara iletilmez.</p>`);panelContent.querySelectorAll('[data-chat]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('newChatName').value=b.dataset.chat;document.getElementById('chatMessage').focus()}));panelContent.querySelector('#sendChat').addEventListener('click',()=>{const who=panelContent.querySelector('#newChatName').value.trim(),msg=panelContent.querySelector('#chatMessage').value.trim();if(!who||!msg){toast('Kişi adı ve mesaj alanlarını doldur.');return}const line=document.createElement('div');line.className='panel-row';line.innerHTML='<div class="panel-icon">↗</div><div class="panel-copy"><strong>Gönderilmeye hazır · '+escapeHtml(who)+'</strong><small></small></div>';line.querySelector('small').textContent=msg;panelContent.querySelector('#chatList').prepend(line);panelContent.querySelector('#chatMessage').value='';toast('Mesaj bu ekrana eklendi. Çevrimiçi gönderim için sunucu bağlantısı gerekir.')})}
+ function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+ function showNotifications(){openPanel('Bildirimler',`${row('♥','Ece Demir gönderini beğendi','18 dakika önce')}${row('＋','Zeynep Aydın seni takip etmeye başladı','1 saat önce')}${row('✦','Nova’ya hoş geldin!','Topluluğunu keşfetmeye başlayabilirsin')}`)}
+ function showProfile(){
+  const current=document.body.dataset.currentUser||'Handan Aslan';
+  let saved={};try{saved=JSON.parse(localStorage.getItem('novaProfile')||'{}')}catch(e){}
+  const initial=(saved.name||current).trim().charAt(0).toLocaleUpperCase('tr')||'H';
+  openPanel('Profilim',`<div class="panel-profile-cover"></div><div class="panel-profile-avatar" id="profileAvatarPreview">${escapeHtml(initial)}</div><div class="panel-profile-body"><h3 id="profilePreviewName">${escapeHtml(saved.name||current)}</h3><p>@nova · Nova Social demo üyesi</p></div><label class="profile-upload" for="profilePhotoInput">📷 Profil fotoğrafı seç</label><input id="profilePhotoInput" type="file" accept="image/*" style="display:none"><label class="panel-label" for="profileName">Görünen ad</label><input class="panel-input" id="profileName" value="${escapeHtml(saved.name||current)}" maxlength="60"><label class="panel-label" for="profileBio">Hakkımda</label><textarea class="panel-input" id="profileBio" rows="3" maxlength="240" placeholder="Kendinden bahset...">${escapeHtml(saved.bio||'')}</textarea><button class="panel-action primary-action" id="saveProfile">Profili kaydet</button><p class="sub">Profil bilgileri bu tarayıcıda saklanır.</p>`);
+  const photoInput=panelContent.querySelector('#profilePhotoInput'),avatar=panelContent.querySelector('#profileAvatarPreview');
+  photoInput.addEventListener('change',()=>{const file=photoInput.files&&photoInput.files[0];if(!file)return;if(!file.type.startsWith('image/')){toast('Lütfen bir resim dosyası seç.');return}const reader=new FileReader();reader.onload=()=>{avatar.style.backgroundImage='url("'+reader.result+'")';avatar.style.backgroundSize='cover';avatar.style.backgroundPosition='center';avatar.textContent='';try{localStorage.setItem('novaProfilePhoto',reader.result)}catch(e){toast('Fotoğraf büyük olduğu için bu tarayıcıda saklanamadı.')}};reader.readAsDataURL(file)});
+  try{const photo=localStorage.getItem('novaProfilePhoto');if(photo){avatar.style.backgroundImage='url("'+photo+'")';avatar.style.backgroundSize='cover';avatar.style.backgroundPosition='center';avatar.textContent=''}}catch(e){}
+  panelContent.querySelector('#profileName').addEventListener('input',e=>{panelContent.querySelector('#profilePreviewName').textContent=e.target.value||'Görünen ad'});
+  panelContent.querySelector('#saveProfile').addEventListener('click',()=>{const name=panelContent.querySelector('#profileName').value.trim(),bio=panelContent.querySelector('#profileBio').value.trim();if(!name){toast('Görünen ad boş olamaz.');return}const profile={name,bio};try{localStorage.setItem('novaProfile',JSON.stringify(profile))}catch(e){}document.body.dataset.currentUser=name;document.querySelector('.heading h1').textContent='Merhaba, '+name.split(' ')[0]+' ✨';const topAvatar=document.querySelector('.top-actions .avatar');if(topAvatar&&!localStorage.getItem('novaProfilePhoto'))topAvatar.textContent=name.charAt(0).toLocaleUpperCase('tr');toast('Profil kaydedildi!');closePanel()})
+ }
+ function showSettings(){
+  const dark=document.body.classList.contains('nova-dark'),reduced=document.body.classList.contains('reduced-motion-local');
+  openPanel('Ayarlar',`${row('🌙','Koyu tema','Arayüzün açık veya koyu görünümünü değiştir',`<button class="panel-action" id="themeSetting">${dark?'Açık temaya geç':'Koyu temaya geç'}</button>`)}${row('✨','Animasyonlar','Geçişleri ve hareket efektlerini açıp kapat',`<button class="panel-action" id="motionSetting">${reduced?'Animasyonları aç':'Animasyonları azalt'}</button>`)}${row('🔔','Bildirimler','Demo bildirimlerini görüntüle','<button class="panel-action" id="notificationSetting">Görüntüle</button>')}<p class="sub">Tema ve hareket tercihleri bu oturumda uygulanır. Bu dosyada gerçek çevrimiçi hesap altyapısı bulunmaz.</p>`);
+  panelContent.querySelector('#themeSetting').addEventListener('click',()=>{document.body.classList.toggle('nova-dark');try{localStorage.setItem('novaDarkMode',document.body.classList.contains('nova-dark')?'1':'0')}catch(e){}showSettings();toast(document.body.classList.contains('nova-dark')?'Koyu tema açıldı':'Açık tema açıldı')});
+  panelContent.querySelector('#motionSetting').addEventListener('click',()=>{document.body.classList.toggle('reduced-motion-local');try{localStorage.setItem('novaReducedMotion',document.body.classList.contains('reduced-motion-local')?'1':'0')}catch(e){}showSettings();toast(document.body.classList.contains('reduced-motion-local')?'Animasyonlar azaltıldı':'Animasyonlar açıldı')});
+  panelContent.querySelector('#notificationSetting').addEventListener('click',()=>showNotifications())
+ }
+ // Replace previous placeholder handlers with meaningful views.
+ document.getElementById('messageBtn').onclick=showSMSBO;
+ document.getElementById('notifBtn').onclick=showNotifications;
+ document.querySelectorAll('[data-section="SMSBO"]').forEach(b=>b.onclick=()=>showSMSBO());
+ document.querySelectorAll('[data-section="Bildirimler"]').forEach(b=>b.onclick=()=>showNotifications());
+ document.querySelectorAll('[data-section="Profilim"]').forEach(b=>b.onclick=()=>showProfile());
+ document.querySelectorAll('[data-section="Ayarlar"]').forEach(b=>b.onclick=()=>showSettings());
+ document.querySelectorAll('[data-section="Oyun"]').forEach(b=>b.onclick=()=>showSpaceGame());
+ document.querySelectorAll('[data-section="Keşfet"]').forEach(b=>b.onclick=()=>{document.getElementById('searchInput').focus();document.querySelector('.search').scrollIntoView({behavior:'smooth',block:'center'});toast('Arama alanına bir konu veya kişi yaz.')});
+ document.querySelectorAll('[data-section="Kaydedilenler"]').forEach(b=>b.onclick=()=>{const saved=[...document.querySelectorAll('#feed .post')].filter(p=>p.querySelector('.save-btn')?.classList.contains('liked'));document.querySelectorAll('#feed .post').forEach(p=>p.style.display=saved.includes(p)?'':'none');document.querySelector('.feed-head h2').textContent='Kaydedilenler';document.getElementById('empty').style.display=saved.length?'none':'block';document.getElementById('empty').textContent='Henüz kaydedilmiş gönderin yok. Bir gönderide Kaydet düğmesini kullan.';document.querySelector('.feed-head').scrollIntoView({behavior:'smooth'})});
+ document.querySelectorAll('[data-section="Akış"]').forEach(b=>b.onclick=()=>{document.querySelectorAll('#feed .post').forEach(p=>p.style.display='');document.getElementById('empty').style.display='none';document.querySelector('.feed-head h2').textContent='Senin akışın';window.scrollTo({top:0,behavior:'smooth'})});
+ document.getElementById('friendMore').onclick=()=>openPanel('Kişileri keşfet',`${row('Z','Zeynep Aydın','Tasarım ve fotoğrafçılıkla ilgileniyor','<button class="panel-action" data-follow="Zeynep Aydın">Takip et</button>')}${row('A','Arda Yılmaz','Fotoğrafçı','<button class="panel-action" data-follow="Arda Yılmaz">Takip et</button>')}${row('S','Selin Aksoy','3 ortak ilgi alanı','<button class="panel-action" data-follow="Selin Aksoy">Takip et</button>')}`);
+ document.getElementById('trendMore').onclick=()=>openPanel('Gündemdekiler',`${row('🎨','#TasarımRuhu','2,4 bin gönderi','<button class="panel-action" data-tag="TasarımRuhu">Ara</button>')}${row('🌱','#KüçükMutluluklar','1,8 bin gönderi','<button class="panel-action" data-tag="KüçükMutluluklar">Ara</button>')}${row('📸','#BugündenBirKare','956 gönderi','<button class="panel-action" data-tag="BugündenBirKare">Ara</button>')}`);
+ panelContent.addEventListener('click',e=>{const f=e.target.closest('[data-follow]');if(f){f.textContent='✓ Takiptesin';f.disabled=true;toast(f.dataset.follow+' takip listene eklendi.')}const t=e.target.closest('[data-tag]');if(t){closePanel();const search=document.getElementById('searchInput');search.value=t.dataset.tag;search.dispatchEvent(new Event('input'));}});
+ // Add smooth click feedback to buttons without overriding their real actions.
+ document.querySelectorAll('button').forEach(btn=>btn.addEventListener('pointerdown',()=>{btn.style.setProperty('--press-scale','.97')}));
+})();
+
+</script>
+</body>
+</html>
